@@ -1,0 +1,13 @@
+#BlueJ class context
+#Thu Oct 08 23:49:44 COT 2026
+comment0.target=JFAlcancia
+comment1.target=JFAlcancia()
+comment2.params=ruta
+comment2.target=javax.swing.ImageIcon cargar(java.lang.String)
+comment3.target=void crearArriba()
+comment4.target=void crearCentro()
+comment5.target=void crearAbajo()
+comment6.params=e
+comment6.target=void actionPerformed(java.awt.event.ActionEvent)
+comment7.target=void mostrar()
+numComments=8

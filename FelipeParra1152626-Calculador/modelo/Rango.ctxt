@@ -1,0 +1,12 @@
+#BlueJ class context
+#Fri Oct 09 00:00:25 COT 2026
+comment0.target=Rango
+comment1.params=limite porcentaje
+comment1.target=Rango(long, double)
+comment2.target=long getLimite()
+comment3.target=double getPorcentaje()
+comment4.params=limite
+comment4.target=void setLimite(long)
+comment5.params=porcentaje
+comment5.target=void setPorcentaje(double)
+numComments=6

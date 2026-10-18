@@ -1,0 +1,21 @@
+#BlueJ class context
+#Fri Oct 09 00:00:25 COT 2026
+comment0.target=Vehiculo
+comment1.params=marca linea modelo precio imagen
+comment1.target=Vehiculo(java.lang.String, java.lang.String, int, long, java.lang.String)
+comment10.params=precio
+comment10.target=void setPrecio(long)
+comment11.params=imagen
+comment11.target=void setImagen(java.lang.String)
+comment2.target=java.lang.String getMarca()
+comment3.target=java.lang.String getLinea()
+comment4.target=int getModelo()
+comment5.target=long getPrecio()
+comment6.target=java.lang.String getImagen()
+comment7.params=marca
+comment7.target=void setMarca(java.lang.String)
+comment8.params=linea
+comment8.target=void setLinea(java.lang.String)
+comment9.params=modelo
+comment9.target=void setModelo(int)
+numComments=12

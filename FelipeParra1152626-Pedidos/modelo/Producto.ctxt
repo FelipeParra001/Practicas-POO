@@ -1,0 +1,15 @@
+#BlueJ class context
+#Fri Oct 09 06:36:30 COT 2026
+comment0.target=Producto
+comment1.params=codigo nombre precio
+comment1.target=Producto(java.lang.String, java.lang.String, double)
+comment2.target=java.lang.String getCodigo()
+comment3.target=java.lang.String getNombre()
+comment4.target=double getPrecio()
+comment5.params=codigo
+comment5.target=void setCodigo(java.lang.String)
+comment6.params=nombre
+comment6.target=void setNombre(java.lang.String)
+comment7.params=precio
+comment7.target=void setPrecio(double)
+numComments=8

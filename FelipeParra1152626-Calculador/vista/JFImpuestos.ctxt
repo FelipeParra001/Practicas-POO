@@ -1,0 +1,21 @@
+#BlueJ class context
+#Fri Oct 09 00:00:29 COT 2026
+comment0.target=JFImpuestos
+comment1.target=JFImpuestos()
+comment10.target=void mostrarVehiculo()
+comment11.params=e
+comment11.target=void actionPerformed(java.awt.event.ActionEvent)
+comment12.target=void buscarPorLinea()
+comment13.target=void buscarPorMarca()
+comment14.target=void calcular()
+comment2.params=ruta ancho alto
+comment2.target=javax.swing.ImageIcon cargar(java.lang.String, int, int)
+comment3.params=ruta ancho alto
+comment3.target=javax.swing.ImageIcon cargarVehiculo(java.lang.String, int, int)
+comment4.target=javax.swing.JTextField casilla()
+comment5.target=javax.swing.JPanel crearBanner()
+comment6.target=javax.swing.JPanel crearDatos()
+comment7.target=javax.swing.JPanel crearBusquedas()
+comment8.target=javax.swing.JPanel crearDescuentos()
+comment9.target=javax.swing.JPanel crearOpciones()
+numComments=15

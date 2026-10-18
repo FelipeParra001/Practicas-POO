@@ -1,0 +1,18 @@
+#BlueJ class context
+#Fri Oct 09 10:50:30 COT 2026
+comment0.target=Pedido
+comment1.params=numero
+comment1.target=Pedido(int)
+comment2.target=int getNumero()
+comment3.target=Cliente getCliente()
+comment4.params=cliente
+comment4.target=void setCliente(Cliente)
+comment5.params=producto
+comment5.target=void agregarProducto(Producto)
+comment6.params=pos
+comment6.target=void eliminarProducto(int)
+comment7.params=pos
+comment7.target=Producto getProducto(int)
+comment8.target=int getCantidad()
+comment9.target=double getTotal()
+numComments=10

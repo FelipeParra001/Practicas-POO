@@ -1,0 +1,22 @@
+#BlueJ class context
+#Fri Oct 09 00:00:25 COT 2026
+comment0.target=CalculadorImpuestos
+comment1.target=CalculadorImpuestos()
+comment10.target=double calcularImpuesto()
+comment11.params=prontoPago servicioPublico traslado
+comment11.target=double calcularTotal(boolean, boolean, boolean)
+comment12.params=limite porcentaje
+comment12.target=void agregarRango(long, double)
+comment13.params=pos limite porcentaje
+comment13.target=void modificarRango(int, long, double)
+comment2.target=Vehiculo getVehiculoActual()
+comment3.target=void irAlPrimero()
+comment4.target=void irAlAnterior()
+comment5.target=void irAlSiguiente()
+comment6.target=void irAlUltimo()
+comment7.params=linea
+comment7.target=boolean buscarPorLinea(java.lang.String)
+comment8.params=marca
+comment8.target=boolean buscarPorMarca(java.lang.String)
+comment9.target=void buscarMasCaro()
+numComments=14

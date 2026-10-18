@@ -1,0 +1,25 @@
+#BlueJ class context
+#Thu Oct 08 23:46:37 COT 2026
+comment0.target=Alcancia
+comment1.target=Alcancia()
+comment10.params=monedas50
+comment10.target=void setMonedas50(int)
+comment11.params=monedas100
+comment11.target=void setMonedas100(int)
+comment12.params=monedas200
+comment12.target=void setMonedas200(int)
+comment13.params=monedas500
+comment13.target=void setMonedas500(int)
+comment14.params=monedas1000
+comment14.target=void setMonedas1000(int)
+comment15.target=void vaciar()
+comment2.params=valor
+comment2.target=void agregarMonedas(int)
+comment3.target=int getSaldo()
+comment4.target=int getTotalMonedas()
+comment5.target=int getMonedas50()
+comment6.target=int getMonedas100()
+comment7.target=int getMonedas200()
+comment8.target=int getMonedas500()
+comment9.target=int getMonedas1000()
+numComments=16

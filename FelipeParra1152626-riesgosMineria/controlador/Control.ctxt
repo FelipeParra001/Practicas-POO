@@ -1,0 +1,12 @@
+#BlueJ class context
+#Mon Oct 19 12:01:53 COT 2026
+comment0.target=Control
+comment1.params=modelGestor viewGestion
+comment1.target=Control(modelo.GestorRiesgos, vista.JFGestion)
+comment2.params=e
+comment2.target=void actionPerformed(java.awt.event.ActionEvent)
+comment3.params=e
+comment3.target=void actionPerformed(java.awt.event.ActionEvent)
+comment4.params=e
+comment4.target=void actionPerformed(java.awt.event.ActionEvent)
+numComments=5

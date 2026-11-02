@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Ciudadano
+comment0.text=\r\n\ Ciudadano\ (Persona\ Independiente).\ Bono\ de\ $160.000.\r\n\ Distribuye\ en\ Medicina\ y/o\ Canasta\ Familiar.\r\n
+comment1.params=tipoDocumento\ numDocumento\ nombre\ apellido\ direccion\ telefono\ edad\ estadoCivil\ estrato\ cabezaHogar\ medicina\ canasta
+comment1.target=Ciudadano(TipoDocumento,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ java.lang.String,\ int,\ boolean,\ Medicina,\ CanastaFamiliar)
+comment2.params=
+comment2.target=double\ getTotalGastado()
+comment3.params=
+comment3.target=java.lang.String\ getTipo()
+comment4.params=
+comment4.target=Medicina\ getMedicina()
+comment5.params=medicina
+comment5.target=void\ setMedicina(Medicina)
+comment6.params=
+comment6.target=CanastaFamiliar\ getCanasta()
+comment7.params=canasta
+comment7.target=void\ setCanasta(CanastaFamiliar)
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9

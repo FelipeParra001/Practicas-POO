@@ -1,128 +1,188 @@
 package Vista;
+
+import Controlador.ControlConclave;
 import Modelo.*;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.event.*;
+import java.util.*;
 
-/**
- * Write a description of class JFGestorCardenales here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class JFGestorCardenales  extends JFrame
+public class JFGestorCardenales extends JFrame implements ActionListener
 {
+    // Atributos
+    private ControlConclave control;
     private JButton btnVotar;
     private JButton btnMostrarResultados;
     private JButton btnSiguienteRonda;
-    private JComboBox<String> cmbCardenales;
+    private JComboBox cmbCardenales;
     private JTextField txtNumRonda;
     private JTextArea areaResultado;
-    
-     public JFGestorCardenales(){
-        
+
+    // Constructor
+    public JFGestorCardenales()
+    {
+        control = new ControlConclave();
         setTitle("Votaciones Conclave");
         setSize(600, 520);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
-        
+        crearInterfaz();
+        cargarCombo();
+        mostrar();
+        setVisible(true);
+    }
+
+    public static void main(String[] args)
+    {
+        new JFGestorCardenales();
+    }
+
+    // Metodos
+    private void crearInterfaz()
+    {
         JPanel panelPrincipal = new JPanel(new BorderLayout(10, 10));
-        
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        
         panelPrincipal.add(crearNorte(), BorderLayout.NORTH);
         panelPrincipal.add(crearCentro(), BorderLayout.CENTER);
         panelPrincipal.add(crearSur(), BorderLayout.SOUTH);
-        
-        add(panelPrincipal, BorderLayout.CENTER);
-        
-       
-        setVisible(true); 
-      
+        add(panelPrincipal);
     }
-    
-      private JPanel crearNorte() {
+
+    private JPanel crearNorte()
+    {
         JPanel panelNorte = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        panelNorte.setOpaque(false);
-        
         JLabel lblTitulo = new JLabel("Votaciones Conclave");
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
         panelNorte.add(lblTitulo);
-        
         return panelNorte;
-     }
-     
-     private JPanel crearCentro (){
-         JPanel panelCentro = new JPanel(null); 
-         panelCentro.setOpaque(false);
-        
-      
-        JLabel lblListaCardenales = new JLabel("Lista de cardenales");
-        lblListaCardenales.setFont(new Font("Arial", Font.BOLD, 14));
-        lblListaCardenales.setBounds(40, 20, 150, 25);
-        panelCentro.add(lblListaCardenales);
-        
-        cmbCardenales = new JComboBox<>();
+    }
+
+    private JPanel crearCentro()
+    {
+        JPanel panelCentro = new JPanel(null);
+
+        JLabel lblLista = new JLabel("Lista de cardenales");
+        lblLista.setFont(new Font("Arial", Font.BOLD, 14));
+        lblLista.setBounds(40, 20, 160, 25);
+        panelCentro.add(lblLista);
+
+        cmbCardenales = new JComboBox();
         cmbCardenales.setBounds(210, 20, 260, 25);
         panelCentro.add(cmbCardenales);
-        
-        
+
         btnVotar = new JButton("Votar");
         btnVotar.setFont(new Font("Arial", Font.PLAIN, 14));
         btnVotar.setBounds(210, 70, 90, 30);
+        btnVotar.addActionListener(this);
         panelCentro.add(btnVotar);
-        
+
         JLabel lblRonda = new JLabel("Ronda No");
         lblRonda.setFont(new Font("Arial", Font.BOLD, 14));
-        lblRonda.setBounds(370, 72, 80, 25);
+        lblRonda.setBounds(340, 72, 80, 25);
         panelCentro.add(lblRonda);
-        
+
         txtNumRonda = new JTextField("1");
         txtNumRonda.setHorizontalAlignment(JTextField.CENTER);
         txtNumRonda.setEditable(false);
-        txtNumRonda.setBounds(450, 72, 20, 25);
+        txtNumRonda.setBounds(430, 72, 40, 25);
         panelCentro.add(txtNumRonda);
-      
+
         JPanel panelResultados = new JPanel(new BorderLayout());
-        panelResultados.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(Color.GRAY), "Resultados", 
-                javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, 
-                new Font("Arial", Font.PLAIN, 14)));
-        panelResultados.setOpaque(false);
+        panelResultados.setBorder(BorderFactory.createTitledBorder("Resultados"));
         panelResultados.setBounds(30, 120, 490, 200);
-        
-        areaResultado = new JTextArea("Aquí se deben mostrar los resultados por ronda de votación");
+        areaResultado = new JTextArea();
         areaResultado.setFont(new Font("Monospaced", Font.PLAIN, 12));
         areaResultado.setEditable(false);
         areaResultado.setLineWrap(true);
-        areaResultado.setWrapStyleWord(true);
-        
-        JScrollPane scroll = new JScrollPane(areaResultado);
-        panelResultados.add(scroll, BorderLayout.CENTER);
-        
+        panelResultados.add(new JScrollPane(areaResultado), BorderLayout.CENTER);
         panelCentro.add(panelResultados);
         return panelCentro;
-     }
-     
-      private JPanel crearSur() {
+    }
+
+    private JPanel crearSur()
+    {
         JPanel panelSur = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 10));
-        panelSur.setOpaque(false);
-        
         btnMostrarResultados = new JButton("Mostrar Resultados");
-        btnMostrarResultados.setFont(new Font("Arial", Font.PLAIN, 14));
-        panelSur.add(btnMostrarResultados);
-        
         btnSiguienteRonda = new JButton("Siguiente Ronda");
-        btnSiguienteRonda.setFont(new Font("Arial", Font.PLAIN, 14));
+        btnMostrarResultados.addActionListener(this);
+        btnSiguienteRonda.addActionListener(this);
+        panelSur.add(btnMostrarResultados);
         panelSur.add(btnSiguienteRonda);
-        
         return panelSur;
     }
-    
-   
+
+    private void cargarCombo()
+    {
+        ArrayList<Cardenal> lista = control.getGestor().getCardenales();
+        for (int i = 0; i < lista.size(); i++)
+        {
+            cmbCardenales.addItem(lista.get(i));
+        }
     }
-     
-     
-     
+
+    public void actionPerformed(ActionEvent e)
+    {
+        if (e.getSource() == btnVotar)
+        {
+            votar();
+        }
+        else if (e.getSource() == btnMostrarResultados)
+        {
+            mostrar();
+        }
+        else if (e.getSource() == btnSiguienteRonda)
+        {
+            siguiente();
+        }
+    }
+
+    private void votar()
+    {
+        Cardenal elegido = (Cardenal) cmbCardenales.getSelectedItem();
+        if (elegido == null)
+        {
+            return;
+        }
+        boolean ok = control.votar(elegido);
+        if (!ok)
+        {
+            JOptionPane.showMessageDialog(this, "No se puede votar");
+        }
+        mostrar();
+        if (control.rondaCerrada())
+        {
+            btnVotar.setEnabled(false);
+        }
+        if (control.getGestor().getPapa() != null)
+        {
+            btnSiguienteRonda.setEnabled(false);
+            btnVotar.setEnabled(false);
+        }
+    }
+
+    private void siguiente()
+    {
+        if (control.getGestor().getPapa() != null)
+        {
+            btnSiguienteRonda.setEnabled(false);
+            return;
+        }
+        boolean ok = control.siguienteRonda();
+        if (!ok)
+        {
+            JOptionPane.showMessageDialog(this, "Cierre la ronda antes de continuar");
+            return;
+        }
+        btnVotar.setEnabled(true);
+        txtNumRonda.setText("" + control.getGestor().getRondaActual().getNumero());
+        mostrar();
+    }
+
+    private void mostrar()
+    {
+        String texto = "ELECTORES\n" + control.electores() + "\n" + control.resultados();
+        areaResultado.setText(texto);
+        txtNumRonda.setText("" + control.getGestor().getRondaActual().getNumero());
+    }
+}

@@ -1,12 +1,25 @@
 package Modelo;
 
-
-/**
- * Write a description of class Voto here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Voto
 {
+    // Atributos
+    private Cardenal votado;
+
+    // Constructor
+    public Voto(Cardenal votado)
+    {
+        this.votado = votado;
+    }
+
+    // Getters
+    public Cardenal getVotado()
+    {
+        return votado;
+    }
+
+    // Setters
+    public void setVotado(Cardenal votado)
+    {
+        this.votado = votado;
+    }
 }

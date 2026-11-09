@@ -9,6 +9,7 @@ Los proyectos se abren y ejecutan con **BlueJ**: abre la carpeta del proyecto (l
 |---------|-------------|
 | `FelipeParra1152626-Alcancia` | Alcancía (modelo / vista) |
 | `FelipeParra1152626-Calculador` | Calculador de impuestos de vehículos (modelo / vista) |
+| `FelipeParra1152626-Cantantes` | Gestión de cantantes (modelo / vista / controlador) |
 | `FelipeParra1152626-Pedidos` | Gestión de pedidos (modelo / vista) |
 | `FelipeParra1152626-riesgosMineria` | Gestión de riesgos en minería |
 | `FelipeParra1152626-conflictos` | Esqueleto del ejercicio de conflictos |

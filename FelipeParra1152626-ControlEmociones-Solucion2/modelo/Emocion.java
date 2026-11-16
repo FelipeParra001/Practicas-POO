@@ -24,14 +24,30 @@ public class Emocion
          
        public void sumarIntensidad(int i){
            intensidad += i; 
+           if(intensidad > 10){
+               intensidad = 10;
+           }
        }
        public void restarIntensidad(int i){
            intensidad -= i; 
+           if(intensidad < 1){
+               intensidad = 1;
+           }
        }
     /*public String enlistar(){
         String nombre = "Nombre: " + nombre + "\n" ; 
         return nombre;
      }*/
+    /**GET Method Propertie accion*/
+    public String getAccion(){
+        return this.accion;
+    }
+
+    /**SET Method Propertie accion*/
+    public void setAccion(String accion){
+        this.accion = accion;
+    }
+
 //Start GetterSetterExtension Source Code
 
     /**GET Method Propertie nombre*/

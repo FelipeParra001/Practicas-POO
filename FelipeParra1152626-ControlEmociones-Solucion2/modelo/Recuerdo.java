@@ -19,7 +19,7 @@ public class Recuerdo
    public String enlistar(){
        String r = "Descripcion: " + descripcion + "\n" 
                 + "Fecha: " + fecha + "\n"
-                + "Evento: " + evento.getNombre() + "\n\n" ;
+                + "Evento: " + (evento == null ? "Ninguno" : evento.getNombre()) + "\n\n" ;
         return r ;
    }
 //Start GetterSetterExtension Source Code

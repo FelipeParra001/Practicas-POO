@@ -40,6 +40,10 @@ public class Control
         panelEnlistar.getBtnEnlistar().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 Emocion emocion = (Emocion) panelEnlistar.getCbEmocion().getSelectedItem();
+                if(emocion == null){
+                    panelEnlistar.getCampoTexto().setText("Primero agregue una emocion");
+                    return;
+                }
                 String lista = modeloGestor.enlistarRecuerdos(emocion);
                 panelEnlistar.getCampoTexto().setText("Recuerdos Asociados: \n " + lista);
             }
@@ -65,6 +69,14 @@ public class Control
                 panelEmocion.getCampoTexto().setText("Intensidad debe ser un entero");
                 return;
             }
+                if(nombre.trim().isEmpty()){
+                    panelEmocion.getCampoTexto().setText("Ingrese el nombre de la emocion");
+                    return;
+                }
+                if(intensidad < 1 || intensidad > 10){
+                    panelEmocion.getCampoTexto().setText("La intensidad debe estar entre 1 y 10");
+                    return;
+                }
                 String tipo = (String) panelEmocion.getCbTipo().getSelectedItem();
                 String accion  = panelEmocion.getTxtAccion().getText();
                 String estado = panelEmocion.getTxtEstado().getText();
@@ -88,6 +100,14 @@ public class Control
                 Emocion  emocion =(Emocion) panelRecuerdo.getCbEmociones().getSelectedItem();
                 Evento evento =(Evento) panelRecuerdo.getCbEventos().getSelectedItem();
 
+                if(descripcion.trim().isEmpty() || fecha.trim().isEmpty()){
+                    panelRecuerdo.getCampoTexto().setText("Complete la descripcion y la fecha");
+                    return;
+                }
+                if(emocion == null || evento == null){
+                    panelRecuerdo.getCampoTexto().setText("Primero agregue una emocion y un evento");
+                    return;
+                }
                 if(evento.getEmocion() != emocion){
                  emocion = evento.getEmocion();
                 }           
@@ -125,6 +145,14 @@ public class Control
                 String nombre = panelEvento.getTxtNombre().getText();
                 String tipo = (String) panelEvento.getCbTipo().getSelectedItem();
                 Emocion  emocion =(Emocion) panelEvento.getCbEmocion().getSelectedItem();
+                if(nombre.trim().isEmpty()){
+                    panelEvento.getCampoTexto().setText("Ingrese el nombre del evento");
+                    return;
+                }
+                if(emocion == null){
+                    panelEvento.getCampoTexto().setText("Primero agregue una emocion");
+                    return;
+                }
                 int nivelCambio;
                 try{
                     nivelCambio = Integer.parseInt(panelEvento.getTxtNivelCambio().getText());
@@ -138,14 +166,18 @@ public class Control
                 if(modeloGestor.agregarEvento(ev)){
                     panelEvento.getCampoTexto().setText("Agregado Correctamente");
                     modeloGestor.nuevaIntensidad(emocion,nivelCambio, tipoCambio);
-                };
-                panelRecuerdo.getCbEventos().addItem(ev);
+                    panelRecuerdo.getCbEventos().addItem(ev);
+                }
             }
         });
            vistaGestor.getBtnMasFuerte().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 vistaGestor.reemplazarPanelCentral(panelResumen);
                 Emocion emocion = modeloGestor.hallarEmocionMasIntensa();
+                if(emocion == null){
+                    panelResumen.getCampoResumen().setText("No hay emociones registradas");
+                    return;
+                }
                 panelResumen.getCampoResumen().setText("La emocion mas intensa en este momento es: " + emocion + "\n" +
                                                         "Con una intensidad de : " + emocion.getIntensidad());
         }

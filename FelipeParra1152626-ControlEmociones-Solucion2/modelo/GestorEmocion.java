@@ -27,7 +27,7 @@ public class GestorEmocion
     public String enlistarEmociones(){
         String r = "" ;
         for(Emocion emocion: lista){
-            r += emocion.toString();
+            r += emocion.toString() + "\n";
         }
         return r ;
     }
@@ -59,12 +59,18 @@ public class GestorEmocion
         }
             total++;
         }
+        if(total == 0){
+            return 0.0;
+        }
         double  promedio = suma / total ;
         return promedio ;
     }
     
     public String enlistarRecuerdos(Emocion e){
         String r = "";
+        if(e == null){
+            return r;
+        }
         for(Recuerdo recuerdo: recuerdos){
             if(recuerdo.getEmocion().getNombre().equals(e.getNombre())){
                 r += recuerdo.enlistar();
@@ -74,6 +80,9 @@ public class GestorEmocion
     }
     
     public void nuevaIntensidad(Emocion e,int nuevaInt, String operacion){
+        if(e == null){
+            return;
+        }
         if(operacion.equals("Positivo")){
             e.sumarIntensidad(nuevaInt);
         }else if(operacion.equals("Negativo")){

@@ -7,8 +7,8 @@ Los proyectos se abren y ejecutan con **BlueJ**: abre la carpeta del proyecto (l
 
 | Carpeta | Descripción |
 |---------|-------------|
-| `FelipeParra1152626-Alcancia` | Alcancía (modelo / vista) |
-| `FelipeParra1152626-Calculador` | Calculador de impuestos de vehículos (modelo / vista) |
+| `FelipeParra1152626-Alcancia` | Alcancía (modelo / vista / controlador) |
+| `FelipeParra1152626-Calculador` | Calculador de impuestos de vehículos (modelo / vista / controlador) |
 | `FelipeParra1152626-Cantantes` | Gestión de cantantes (modelo / vista / controlador) |
 | `FelipeParra1152626-Biblioteca` | Gestión de biblioteca UFPS: libros, usuarios y préstamos (modelo / vista) |
 | `FelipeParra1152626-ControlEmociones` | Control de emociones, recuerdos y eventos (modelo / vista / controlador) |

@@ -1,15 +1,11 @@
 package vista;
 
-import modelo.Alcancia;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class JFAlcancia extends JFrame implements ActionListener
+public class JFAlcancia extends JFrame
 {
     // Atributos
-    private Alcancia alcancia;
     private JLabel lblImagen;
     private JLabel lblSaldo;
     private JLabel lbl50;
@@ -31,7 +27,6 @@ public class JFAlcancia extends JFrame implements ActionListener
     // Constructor
     public JFAlcancia()
     {
-        alcancia = new Alcancia();
         setTitle("Mi Alcancia - POO I");
         setSize(520, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,8 +40,6 @@ public class JFAlcancia extends JFrame implements ActionListener
         crearArriba();
         crearCentro();
         crearAbajo();
-        mostrar();
-        setVisible(true);
     }
 
     public ImageIcon cargar(String ruta)
@@ -89,11 +82,6 @@ public class JFAlcancia extends JFrame implements ActionListener
         btn200 = new JButton("$200");
         btn500 = new JButton("$500");
         btn1000 = new JButton("$1000");
-        btn50.addActionListener(this);
-        btn100.addActionListener(this);
-        btn200.addActionListener(this);
-        btn500.addActionListener(this);
-        btn1000.addActionListener(this);
         botones.add(btn50);
         botones.add(btn100);
         botones.add(btn200);
@@ -134,55 +122,85 @@ public class JFAlcancia extends JFrame implements ActionListener
     {
         JPanel panel = new JPanel(new FlowLayout());
         btnVaciar = new JButton("Vaciar alcancia");
-        btnVaciar.addActionListener(this);
         panel.add(btnVaciar);
         add(panel, BorderLayout.SOUTH);
     }
 
-    public void actionPerformed(ActionEvent e)
+    // Cambia la imagen a la alcancia llena
+    public void mostrarLlena()
     {
-        Object boton = e.getSource();
-        if (boton == btn50)
-        {
-            alcancia.agregarMonedas(50);
-            lblImagen.setIcon(iconoLlena);
-        }
-        else if (boton == btn100)
-        {
-            alcancia.agregarMonedas(100);
-            lblImagen.setIcon(iconoLlena);
-        }
-        else if (boton == btn200)
-        {
-            alcancia.agregarMonedas(200);
-            lblImagen.setIcon(iconoLlena);
-        }
-        else if (boton == btn500)
-        {
-            alcancia.agregarMonedas(500);
-            lblImagen.setIcon(iconoLlena);
-        }
-        else if (boton == btn1000)
-        {
-            alcancia.agregarMonedas(1000);
-            lblImagen.setIcon(iconoLlena);
-        }
-        else if (boton == btnVaciar)
-        {
-            alcancia.vaciar();
-            lblImagen.setIcon(iconoRota);
-        }
-        mostrar();
+        lblImagen.setIcon(iconoLlena);
     }
 
-    public void mostrar()
+    // Cambia la imagen a la alcancia rota
+    public void mostrarRota()
     {
-        lblSaldo.setText("$ " + alcancia.getSaldo());
-        lbl50.setText(String.valueOf(alcancia.getMonedas50()));
-        lbl100.setText(String.valueOf(alcancia.getMonedas100()));
-        lbl200.setText(String.valueOf(alcancia.getMonedas200()));
-        lbl500.setText(String.valueOf(alcancia.getMonedas500()));
-        lbl1000.setText(String.valueOf(alcancia.getMonedas1000()));
-        lblTotal.setText("Total monedas: " + alcancia.getTotalMonedas());
+        lblImagen.setIcon(iconoRota);
+    }
+
+    // Getters
+    public JLabel getLblSaldo()
+    {
+        return lblSaldo;
+    }
+
+    public JLabel getLbl50()
+    {
+        return lbl50;
+    }
+
+    public JLabel getLbl100()
+    {
+        return lbl100;
+    }
+
+    public JLabel getLbl200()
+    {
+        return lbl200;
+    }
+
+    public JLabel getLbl500()
+    {
+        return lbl500;
+    }
+
+    public JLabel getLbl1000()
+    {
+        return lbl1000;
+    }
+
+    public JLabel getLblTotal()
+    {
+        return lblTotal;
+    }
+
+    public JButton getBtn50()
+    {
+        return btn50;
+    }
+
+    public JButton getBtn100()
+    {
+        return btn100;
+    }
+
+    public JButton getBtn200()
+    {
+        return btn200;
+    }
+
+    public JButton getBtn500()
+    {
+        return btn500;
+    }
+
+    public JButton getBtn1000()
+    {
+        return btn1000;
+    }
+
+    public JButton getBtnVaciar()
+    {
+        return btnVaciar;
     }
 }

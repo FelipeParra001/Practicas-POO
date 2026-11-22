@@ -1,56 +1,40 @@
 package vista;
 
-import modelo.Cliente;
-import modelo.Pedido;
-import modelo.Producto;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-public class FrmPedido extends JFrame implements ActionListener
+public class FrmPedido extends JFrame
 {
     // Pedido
-    public JTextField txtNumeroPedido;
+    private JTextField txtNumeroPedido;
 
     // Cliente
-    public JTextField txtCedula;
-    public JTextField txtNombreCliente;
+    private JTextField txtCedula;
+    private JTextField txtNombreCliente;
 
     // Producto
-    public JTextField txtCodigoProducto;
-    public JTextField txtNombreProducto;
-    public JTextField txtPrecio;
+    private JTextField txtCodigoProducto;
+    private JTextField txtNombreProducto;
+    private JTextField txtPrecio;
 
     // Botones
-    public JButton btnAgregarProducto;
-    public JButton btnEliminarProducto;
-    public JButton btnNuevoPedido;
-    public JButton btnLimpiar;
-    public JButton btnSalir;
+    private JButton btnAgregarProducto;
+    private JButton btnEliminarProducto;
+    private JButton btnNuevoPedido;
+    private JButton btnLimpiar;
+    private JButton btnSalir;
 
     // Tabla
-    public JTable tablaProductos;
-    public DefaultTableModel modeloTabla;
+    private JTable tablaProductos;
+    private DefaultTableModel modeloTabla;
 
     // Total
-    public JLabel lblTotal;
-
-    // Modelo
-    private ArrayList<Pedido> pedidos;
-    private Pedido pedidoActual;
-    private int siguienteNumero;
+    private JLabel lblTotal;
 
     // Constructor
     public FrmPedido()
     {
-        pedidos = new ArrayList<Pedido>();
-        siguienteNumero = 1;
-        pedidoActual = new Pedido(siguienteNumero);
-        pedidos.add(pedidoActual);
-
         setTitle("Gestion de Pedidos");
         setSize(900, 650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,8 +43,6 @@ public class FrmPedido extends JFrame implements ActionListener
         crearTitulo();
         crearPanelCentral();
         crearPanelInferior();
-        mostrar();
-        setVisible(true);
     }
 
     private void crearTitulo()
@@ -139,7 +121,6 @@ public class FrmPedido extends JFrame implements ActionListener
         txtPrecio = new JTextField(10);
         panel.add(txtPrecio);
         btnAgregarProducto = new JButton("Agregar Producto");
-        btnAgregarProducto.addActionListener(this);
         panel.add(btnAgregarProducto);
         return panel;
     }
@@ -160,7 +141,6 @@ public class FrmPedido extends JFrame implements ActionListener
         tablaProductos.setRowHeight(25);
         panel.add(new JScrollPane(tablaProductos), BorderLayout.CENTER);
         btnEliminarProducto = new JButton("Eliminar Producto");
-        btnEliminarProducto.addActionListener(this);
         JPanel panelEliminar = new JPanel();
         panelEliminar.add(btnEliminarProducto);
         panel.add(panelEliminar, BorderLayout.EAST);
@@ -183,9 +163,6 @@ public class FrmPedido extends JFrame implements ActionListener
         btnNuevoPedido = new JButton("Nuevo Pedido");
         btnLimpiar = new JButton("Limpiar Campos");
         btnSalir = new JButton("Salir");
-        btnNuevoPedido.addActionListener(this);
-        btnLimpiar.addActionListener(this);
-        btnSalir.addActionListener(this);
         panelBotones.add(btnNuevoPedido);
         panelBotones.add(btnLimpiar);
         panelBotones.add(btnSalir);
@@ -195,102 +172,82 @@ public class FrmPedido extends JFrame implements ActionListener
         add(panelInferior, BorderLayout.SOUTH);
     }
 
-    public void actionPerformed(ActionEvent e)
+    // Limpia los campos del producto
+    public void limpiarProducto()
     {
-        Object boton = e.getSource();
-        if (boton == btnAgregarProducto)
-        {
-            agregar();
-        }
-        else if (boton == btnEliminarProducto)
-        {
-            eliminar();
-        }
-        else if (boton == btnNuevoPedido)
-        {
-            nuevoPedido();
-        }
-        else if (boton == btnLimpiar)
-        {
-            txtCodigoProducto.setText("");
-            txtNombreProducto.setText("");
-            txtPrecio.setText("");
-        }
-        else if (boton == btnSalir)
-        {
-            System.exit(0);
-        }
-    }
-
-    private void guardarCliente()
-    {
-        String cedula = txtCedula.getText().trim();
-        String nombre = txtNombreCliente.getText().trim();
-        pedidoActual.setCliente(new Cliente(cedula, nombre));
-    }
-
-    private void agregar()
-    {
-        String codigo = txtCodigoProducto.getText().trim();
-        String nombre = txtNombreProducto.getText().trim();
-        String textoPrecio = txtPrecio.getText().trim();
-        if (codigo.equals("") || nombre.equals("") || textoPrecio.equals(""))
-        {
-            JOptionPane.showMessageDialog(this, "Complete codigo, nombre y precio");
-            return;
-        }
-        double precio = Double.parseDouble(textoPrecio);
-        guardarCliente();
-        pedidoActual.agregarProducto(new Producto(codigo, nombre, precio));
         txtCodigoProducto.setText("");
         txtNombreProducto.setText("");
         txtPrecio.setText("");
-        mostrar();
     }
 
-    private void eliminar()
+    // Getters
+    public JTextField getTxtNumeroPedido()
     {
-        int fila = tablaProductos.getSelectedRow();
-        if (fila < 0)
-        {
-            JOptionPane.showMessageDialog(this, "Seleccione un producto");
-            return;
-        }
-        pedidoActual.eliminarProducto(fila);
-        mostrar();
+        return txtNumeroPedido;
     }
 
-    private void nuevoPedido()
+    public JTextField getTxtCedula()
     {
-        guardarCliente();
-        siguienteNumero = siguienteNumero + 1;
-        pedidoActual = new Pedido(siguienteNumero);
-        pedidos.add(pedidoActual);
-        txtCodigoProducto.setText("");
-        txtNombreProducto.setText("");
-        txtPrecio.setText("");
-        mostrar();
+        return txtCedula;
     }
 
-    private void mostrar()
+    public JTextField getTxtNombreCliente()
     {
-        txtNumeroPedido.setText(String.valueOf(pedidoActual.getNumero()));
-        if (pedidoActual.getCliente() != null)
-        {
-            txtCedula.setText(pedidoActual.getCliente().getCedula());
-            txtNombreCliente.setText(pedidoActual.getCliente().getNombre());
-        }
-        else
-        {
-            txtCedula.setText("");
-            txtNombreCliente.setText("");
-        }
-        modeloTabla.setRowCount(0);
-        for (int i = 0; i < pedidoActual.getCantidad(); i++)
-        {
-            Producto p = pedidoActual.getProducto(i);
-            modeloTabla.addRow(new Object[]{p.getCodigo(), p.getNombre(), p.getPrecio()});
-        }
-        lblTotal.setText("$ " + pedidoActual.getTotal());
+        return txtNombreCliente;
+    }
+
+    public JTextField getTxtCodigoProducto()
+    {
+        return txtCodigoProducto;
+    }
+
+    public JTextField getTxtNombreProducto()
+    {
+        return txtNombreProducto;
+    }
+
+    public JTextField getTxtPrecio()
+    {
+        return txtPrecio;
+    }
+
+    public JButton getBtnAgregarProducto()
+    {
+        return btnAgregarProducto;
+    }
+
+    public JButton getBtnEliminarProducto()
+    {
+        return btnEliminarProducto;
+    }
+
+    public JButton getBtnNuevoPedido()
+    {
+        return btnNuevoPedido;
+    }
+
+    public JButton getBtnLimpiar()
+    {
+        return btnLimpiar;
+    }
+
+    public JButton getBtnSalir()
+    {
+        return btnSalir;
+    }
+
+    public JTable getTablaProductos()
+    {
+        return tablaProductos;
+    }
+
+    public DefaultTableModel getModeloTabla()
+    {
+        return modeloTabla;
+    }
+
+    public JLabel getLblTotal()
+    {
+        return lblTotal;
     }
 }

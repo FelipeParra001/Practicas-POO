@@ -10,10 +10,10 @@ Los proyectos se abren y ejecutan con **BlueJ**: abre la carpeta del proyecto (l
 | `FelipeParra1152626-Alcancia` | Alcancía (modelo / vista / controlador) |
 | `FelipeParra1152626-Calculador` | Calculador de impuestos de vehículos (modelo / vista / controlador) |
 | `FelipeParra1152626-Cantantes` | Gestión de cantantes (modelo / vista / controlador) |
-| `FelipeParra1152626-Biblioteca` | Gestión de biblioteca UFPS: libros, usuarios y préstamos (modelo / vista) |
+| `FelipeParra1152626-Biblioteca` | Gestión de biblioteca UFPS: libros, usuarios y préstamos (modelo / vista / controlador) |
 | `FelipeParra1152626-ControlEmociones` | Control de emociones, recuerdos y eventos (modelo / vista / controlador) |
 | `FelipeParra1152626-ControlEmociones-Solucion2` | Control de emociones, solución 2 (modelo / vista / controlador) |
-| `FelipeParra1152626-Pedidos` | Gestión de pedidos (modelo / vista) |
+| `FelipeParra1152626-Pedidos` | Gestión de pedidos (modelo / vista / controlador) |
 | `FelipeParra1152626-riesgosMineria` | Gestión de riesgos en minería |
 | `FelipeParra1152626-conflictos` | Esqueleto del ejercicio de conflictos |
 | `FelipeParra1152626-ProcesoConclave` | Proceso cónclave: cardenales, votos y rondas (modelo / vista / controlador; en desarrollo) |

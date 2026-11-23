@@ -1,20 +1,16 @@
 package Vista;
 
-import Modelo.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.*;
 
 /**
  * Formulario de registro de personas y distribución del bono.
- * Se abre solo al crear el objeto (sin clase Main).
+ * Solo contiene los componentes gráficos (la lógica está en el controlador).
  */
-public class JFRegistroPersona extends JFrame implements ActionListener {
+public class JFRegistroPersona extends JFrame {
 
     // Componentes del panel de datos básicos
-    private JComboBox<TipoDocumento> cbTipoDocumento;
+    private JComboBox<String> cbTipoDocumento;
     private JTextField txtDocumento;
     private JTextField txtNombre;
     private JTextField txtApellido;
@@ -47,13 +43,8 @@ public class JFRegistroPersona extends JFrame implements ActionListener {
     private JTextField txtMedicinaIndependiente;
     private JTextField txtCanastaFamiliar;
 
-    // Lista de personas (polimorfismo)
-    private ArrayList<Persona> personas;
-
     // Constructor
     public JFRegistroPersona() {
-        personas = new ArrayList<Persona>();
-
         setTitle("Registro datos básicos");
         setSize(900, 620);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,11 +53,6 @@ public class JFRegistroPersona extends JFrame implements ActionListener {
 
         crearPanelIzquierdo();
         crearPanelDerecho();
-
-        // Estado inicial
-        habilitarSegunTipo();
-
-        setVisible(true);
     }
 
     // Panel izquierdo: datos básicos
@@ -75,7 +61,7 @@ public class JFRegistroPersona extends JFrame implements ActionListener {
         panel.setBorder(BorderFactory.createTitledBorder("Registro datos básicos"));
 
         panel.add(new JLabel("Tipo Documento"));
-        cbTipoDocumento = new JComboBox<TipoDocumento>(TipoDocumento.values());
+        cbTipoDocumento = new JComboBox<String>(new String[]{"CEDULA_CIUDADANIA", "TARJETA_DE_IDENTIDAD", "CEDULA_EXTRANJERIA"});
         panel.add(cbTipoDocumento);
 
         panel.add(new JLabel("Documento"));
@@ -112,7 +98,6 @@ public class JFRegistroPersona extends JFrame implements ActionListener {
 
         panel.add(new JLabel("Tipo"));
         cbTipoPersona = new JComboBox<String>(new String[]{"Ciudadano", "Profesional de Salud", "Docente"});
-        cbTipoPersona.addActionListener(this);
         panel.add(cbTipoPersona);
 
         panel.add(new JLabel("Institucion"));
@@ -145,9 +130,6 @@ public class JFRegistroPersona extends JFrame implements ActionListener {
         btnGuardar = new JButton("Guardar");
         btnLimpiar = new JButton("Limpiar");
         btnBuscar = new JButton("Buscar");
-        btnGuardar.addActionListener(this);
-        btnLimpiar.addActionListener(this);
-        btnBuscar.addActionListener(this);
         panelBotones.add(btnGuardar);
         panelBotones.add(btnLimpiar);
         panelBotones.add(btnBuscar);
@@ -192,38 +174,16 @@ public class JFRegistroPersona extends JFrame implements ActionListener {
         add(panelDerecho, BorderLayout.CENTER);
     }
 
-    // Habilita / deshabilita campos y paneles según el tipo seleccionado
-    private void habilitarSegunTipo() {
-        String tipo = (String) cbTipoPersona.getSelectedItem();
-
-        // Campos específicos
-        boolean esCiudadano = "Ciudadano".equals(tipo);
-        boolean esProf = "Profesional de Salud".equals(tipo);
-        boolean esDocente = "Docente".equals(tipo);
-
-        txtInstitucion.setEnabled(esProf || esDocente);
-        txtEspecialidad.setEnabled(esProf);
-        cbNivel.setEnabled(esDocente);
-        chkCabezaHogar.setEnabled(esCiudadano);
-        txtEstrato.setEnabled(esCiudadano);
-
-        // Paneles de distribución
-        panelSalud.setEnabled(esProf);
-        setPanelEnabled(panelSalud, esProf);
-        panelDocente.setEnabled(esDocente);
-        setPanelEnabled(panelDocente, esDocente);
-        panelIndependiente.setEnabled(esCiudadano);
-        setPanelEnabled(panelIndependiente, esCiudadano);
-    }
-
-    private void setPanelEnabled(JPanel panel, boolean enabled) {
+    // Habilita o deshabilita todos los componentes de un panel
+    public void setPanelHabilitado(JPanel panel, boolean habilitado) {
+        panel.setEnabled(habilitado);
         for (Component c : panel.getComponents()) {
-            c.setEnabled(enabled);
+            c.setEnabled(habilitado);
         }
     }
 
     // Limpia todos los campos
-    private void limpiar() {
+    public void limpiar() {
         txtDocumento.setText("");
         txtNombre.setText("");
         txtApellido.setText("");
@@ -245,112 +205,37 @@ public class JFRegistroPersona extends JFrame implements ActionListener {
         txtInternetEnergia.setText("");
         txtMedicinaIndependiente.setText("");
         txtCanastaFamiliar.setText("");
-
-        habilitarSegunTipo();
     }
 
-    // Guardar
-    private void guardar() {
-        try {
-            TipoDocumento tipoDoc = (TipoDocumento) cbTipoDocumento.getSelectedItem();
-            String numDoc = txtDocumento.getText().trim();
-            String nombre = txtNombre.getText().trim();
-            String apellido = txtApellido.getText().trim();
-            String direccion = txtDireccion.getText().trim();
-            String telefono = txtTelefono.getText().trim();
-            int edad = Integer.parseInt(txtEdad.getText().trim());
-            int estrato = 0;
-            if (txtEstrato.isEnabled() && !txtEstrato.getText().trim().isEmpty()) {
-                estrato = Integer.parseInt(txtEstrato.getText().trim());
-            }
-            String estadoCivil = (String) cbEstadoCivil.getSelectedItem();
-            boolean cabeza = chkCabezaHogar.isSelected();
-            String tipo = (String) cbTipoPersona.getSelectedItem();
+    // Getters de los componentes
+    public JComboBox<String> getCbTipoDocumento() { return cbTipoDocumento; }
+    public JTextField getTxtDocumento() { return txtDocumento; }
+    public JTextField getTxtNombre() { return txtNombre; }
+    public JTextField getTxtApellido() { return txtApellido; }
+    public JTextField getTxtDireccion() { return txtDireccion; }
+    public JTextField getTxtTelefono() { return txtTelefono; }
+    public JTextField getTxtEdad() { return txtEdad; }
+    public JTextField getTxtEstrato() { return txtEstrato; }
+    public JComboBox<String> getCbEstadoCivil() { return cbEstadoCivil; }
+    public JComboBox<String> getCbTipoPersona() { return cbTipoPersona; }
+    public JTextField getTxtInstitucion() { return txtInstitucion; }
+    public JTextField getTxtEspecialidad() { return txtEspecialidad; }
+    public JComboBox<String> getCbNivel() { return cbNivel; }
+    public JCheckBox getChkCabezaHogar() { return chkCabezaHogar; }
 
-            if (numDoc.isEmpty() || nombre.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Documento y Nombre son obligatorios");
-                return;
-            }
+    public JButton getBtnGuardar() { return btnGuardar; }
+    public JButton getBtnLimpiar() { return btnLimpiar; }
+    public JButton getBtnBuscar() { return btnBuscar; }
 
-            Persona persona = null;
+    public JPanel getPanelSalud() { return panelSalud; }
+    public JTextField getTxtElementoBioseguridad() { return txtElementoBioseguridad; }
+    public JTextField getTxtMedicinaSalud() { return txtMedicinaSalud; }
 
-            if ("Ciudadano".equals(tipo)) {
-                double med = parseDouble(txtMedicinaIndependiente.getText());
-                double can = parseDouble(txtCanastaFamiliar.getText());
-                Medicina medicina = new Medicina(med);
-                CanastaFamiliar canasta = new CanastaFamiliar(can);
-                persona = new Ciudadano(tipoDoc, numDoc, nombre, apellido, direccion, telefono,
-                                        edad, estadoCivil, estrato, cabeza, medicina, canasta);
-            } else if ("Profesional de Salud".equals(tipo)) {
-                String inst = txtInstitucion.getText().trim();
-                String esp = txtEspecialidad.getText().trim();
-                double bio = parseDouble(txtElementoBioseguridad.getText());
-                double med = parseDouble(txtMedicinaSalud.getText());
-                ElementoBioseguridad elemento = new ElementoBioseguridad(bio);
-                Medicina medicina = new Medicina(med);
-                persona = new ProfesionalSalud(tipoDoc, numDoc, nombre, apellido, direccion, telefono,
-                                               edad, estadoCivil, estrato, cabeza, inst, esp, elemento, medicina);
-            } else if ("Docente".equals(tipo)) {
-                String inst = txtInstitucion.getText().trim();
-                String nivel = (String) cbNivel.getSelectedItem();
-                double imp = parseDouble(txtImplementosTecnologicos.getText());
-                double serv = parseDouble(txtInternetEnergia.getText());
-                ImplementoTecnologico implemento = new ImplementoTecnologico(imp);
-                Servicio servicio = new Servicio(serv);
-                persona = new Docente(tipoDoc, numDoc, nombre, apellido, direccion, telefono,
-                                      edad, estadoCivil, estrato, cabeza, inst, nivel, implemento, servicio);
-            }
+    public JPanel getPanelDocente() { return panelDocente; }
+    public JTextField getTxtImplementosTecnologicos() { return txtImplementosTecnologicos; }
+    public JTextField getTxtInternetEnergia() { return txtInternetEnergia; }
 
-            if (persona != null) {
-                if (!persona.distribucionValida()) {
-                    JOptionPane.showMessageDialog(this,
-                        "La distribución supera el monto del bono asignado ($" + persona.getBono().getMonto() + ")",
-                        "Error de validación", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                personas.add(persona);
-                JOptionPane.showMessageDialog(this, "Persona guardada correctamente.\nTotal registrados: " + personas.size());
-                limpiar();
-            }
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Revise los campos numéricos (Edad, Estrato y montos)");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al guardar: " + ex.getMessage());
-        }
-    }
-
-    // Buscar por documento
-    private void buscar() {
-        String doc = txtDocumento.getText().trim();
-        if (doc.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese el número de documento a buscar");
-            return;
-        }
-        for (Persona p : personas) {
-            if (p.getNumDocumento().equals(doc)) {
-                JOptionPane.showMessageDialog(this, p.toString(), "Datos encontrados", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-        }
-        JOptionPane.showMessageDialog(this, "No se encontró ninguna persona con ese documento");
-    }
-
-    private double parseDouble(String texto) {
-        if (texto == null || texto.trim().isEmpty()) return 0;
-        return Double.parseDouble(texto.trim());
-    }
-
-    // ActionListener
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == cbTipoPersona) {
-            habilitarSegunTipo();
-        } else if (e.getSource() == btnGuardar) {
-            guardar();
-        } else if (e.getSource() == btnLimpiar) {
-            limpiar();
-        } else if (e.getSource() == btnBuscar) {
-            buscar();
-        }
-    }
+    public JPanel getPanelIndependiente() { return panelIndependiente; }
+    public JTextField getTxtMedicinaIndependiente() { return txtMedicinaIndependiente; }
+    public JTextField getTxtCanastaFamiliar() { return txtCanastaFamiliar; }
 }

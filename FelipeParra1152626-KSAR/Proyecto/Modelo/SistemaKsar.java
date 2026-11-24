@@ -500,6 +500,7 @@ public class SistemaKsar
             suma += m.calcularDesempeno();
         }
         double promedio = suma / (double) misiones.size();
+        promedio = Math.round(promedio * 100.0) / 100.0;
         return "Desempeño del conjunto:\nMisiones: " + misiones.size()
              + "\nSuma: " + suma
              + "\nPromedio: " + promedio;

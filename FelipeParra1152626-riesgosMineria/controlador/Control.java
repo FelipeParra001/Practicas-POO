@@ -3,6 +3,7 @@ package controlador;
 import modelo.*;
 import vista.*;
 import java.awt.event.*;
+import javax.swing.JOptionPane;
 
 public class Control implements ActionListener {
 
@@ -30,14 +31,28 @@ public class Control implements ActionListener {
 
     // Acción botón Agregar
     private void agregar() {
-        String codigo = viewGestion.getTxtCodigo().getText();
-        String descripcion = viewGestion.getTxtDescripcion().getText();
-        String tipo = viewGestion.getTxtTipo().getText();
+        String codigo = viewGestion.getTxtCodigo().getText().trim();
+        String descripcion = viewGestion.getTxtDescripcion().getText().trim();
+        String tipo = viewGestion.getTxtTipo().getText().trim();
+        String textoNivel = viewGestion.getTxtNivel().getText().trim();
+
+        // Validar que no haya campos vacios
+        if (codigo.equals("") || descripcion.equals("") || tipo.equals("") || textoNivel.equals("")) {
+            JOptionPane.showMessageDialog(viewGestion, "Complete todos los campos.");
+            return;
+        }
+
         int nivel;
         try {
-            nivel = Integer.parseInt(viewGestion.getTxtNivel().getText());
+            nivel = Integer.parseInt(textoNivel);
         } catch (NumberFormatException ex) {
-            viewGestion.getAreaSalida().setText("Nivel debe ser un número entero.");
+            JOptionPane.showMessageDialog(viewGestion, "Nivel debe ser un número entero.");
+            return;
+        }
+
+        // El nivel de peligro va de 1 a 5
+        if (nivel < 1 || nivel > 5) {
+            JOptionPane.showMessageDialog(viewGestion, "El nivel debe estar entre 1 y 5.");
             return;
         }
 

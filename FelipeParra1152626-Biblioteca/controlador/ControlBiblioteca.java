@@ -70,6 +70,11 @@ public class ControlBiblioteca implements ActionListener
             return;
         }
         int anio = aEntero(anioTxt);
+        if (anio <= 0)
+        {
+            aviso("Anio no valido");
+            return;
+        }
         if (tipo.equals("1"))
         {
             biblioteca.addLibro(new LibroReferencia(titulo, autor, issn, anio, editorial));
@@ -104,6 +109,11 @@ public class ControlBiblioteca implements ActionListener
         String nombre = pedir("Nombre:");
         if (codigo == null || nombre == null)
         {
+            return;
+        }
+        if (biblioteca.buscarUsuario(codigo) != null)
+        {
+            aviso("Ya existe un usuario con ese codigo");
             return;
         }
         if (tipo.equals("1"))

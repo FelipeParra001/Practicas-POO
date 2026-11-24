@@ -14,9 +14,15 @@ public class GestorCantantes
     }
 
     // Metodos
-    public void agregar(Cantante c)
+    public boolean agregar(Cantante c)
     {
+        // No se permiten cantantes con el mismo nombre
+        if (buscarPorNombre(c.getNombre()) != null)
+        {
+            return false;
+        }
         lista.add(c);
+        return true;
     }
 
     public Cantante buscarPorNombre(String nombre)

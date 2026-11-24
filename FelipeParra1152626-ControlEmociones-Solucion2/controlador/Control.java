@@ -96,7 +96,7 @@ public class Control implements ActionListener
         String nombre = panelEmocion.getTxtNombre().getText();
         int intensidad = 0 ;
         try{
-            intensidad =Integer.parseInt( panelEmocion.getTxtIntensidad().getText());
+            intensidad =Integer.parseInt( panelEmocion.getTxtIntensidad().getText().trim());
         }catch(NumberFormatException ex){
             panelEmocion.getCampoTexto().setText("Intensidad debe ser un entero");
             return;
@@ -180,9 +180,13 @@ public class Control implements ActionListener
         }
         int nivelCambio;
         try{
-            nivelCambio = Integer.parseInt(panelEvento.getTxtNivelCambio().getText());
+            nivelCambio = Integer.parseInt(panelEvento.getTxtNivelCambio().getText().trim());
         }catch (NumberFormatException ex){
             panelEvento.getCampoTexto().setText("Ingrese un numero valido");
+            return;
+        }
+        if(nivelCambio <= 0){
+            panelEvento.getCampoTexto().setText("El nivel de cambio debe ser mayor que 0");
             return;
         }
         String  tipoCambio = (String) panelEvento.getCbTipoCambio().getSelectedItem();
@@ -192,6 +196,8 @@ public class Control implements ActionListener
             panelEvento.getCampoTexto().setText("Agregado Correctamente");
             modeloGestor.nuevaIntensidad(emocion,nivelCambio, tipoCambio);
             panelRecuerdo.getCbEventos().addItem(ev);
+        }else{
+            panelEvento.getCampoTexto().setText("Evento ya existente");
         }
     }
 

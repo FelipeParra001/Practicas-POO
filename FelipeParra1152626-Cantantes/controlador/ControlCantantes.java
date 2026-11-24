@@ -64,7 +64,16 @@ public class ControlCantantes implements ActionListener
             JOptionPane.showMessageDialog(vista, "El numero de canciones debe ser entero");
             return;
         }
-        modelo.agregar(new Cantante(nombre, album, canciones));
+        if (canciones < 0)
+        {
+            JOptionPane.showMessageDialog(vista, "El numero de canciones no puede ser negativo");
+            return;
+        }
+        if (!modelo.agregar(new Cantante(nombre, album, canciones)))
+        {
+            JOptionPane.showMessageDialog(vista, "Ya existe un cantante con ese nombre");
+            return;
+        }
         vista.limpiar();
         mostrar();
     }

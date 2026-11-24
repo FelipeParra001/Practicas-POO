@@ -80,9 +80,10 @@ public class ControlPedido implements ActionListener
             JOptionPane.showMessageDialog(vista, "El precio debe ser un numero");
             return;
         }
-        if (precio <= 0)
+        // Tambien descarta NaN e Infinity
+        if (Double.isNaN(precio) || Double.isInfinite(precio) || precio <= 0)
         {
-            JOptionPane.showMessageDialog(vista, "El precio debe ser mayor que cero");
+            JOptionPane.showMessageDialog(vista, "El precio debe ser un numero mayor que cero");
             return;
         }
         guardarCliente();
@@ -105,6 +106,18 @@ public class ControlPedido implements ActionListener
 
     private void nuevoPedido()
     {
+        String cedula = vista.getTxtCedula().getText().trim();
+        String nombre = vista.getTxtNombreCliente().getText().trim();
+        if (cedula.equals("") || nombre.equals(""))
+        {
+            JOptionPane.showMessageDialog(vista, "Ingrese la cedula y el nombre del cliente");
+            return;
+        }
+        if (modelo.getPedidoActual().getCantidad() == 0)
+        {
+            JOptionPane.showMessageDialog(vista, "El pedido no tiene productos");
+            return;
+        }
         guardarCliente();
         modelo.nuevoPedido();
         vista.limpiarProducto();

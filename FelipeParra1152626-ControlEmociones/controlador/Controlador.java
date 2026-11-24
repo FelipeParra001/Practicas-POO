@@ -80,10 +80,16 @@ public class Controlador implements ActionListener
         
         int intensidad = 0;
         try{
-            intensidad = Integer.parseInt(vista.getTxtIntensidad().getText());
+            intensidad = Integer.parseInt(vista.getTxtIntensidad().getText().trim());
         }
         catch(NumberFormatException e){
             vista.getTxtSalida().setText("Intensidad es un dato numerico");
+            return;
+        }
+        
+        // La intensidad va de 1 a 10
+        if(intensidad < 1 || intensidad > 10){
+            vista.getTxtSalida().setText("La intensidad debe estar entre 1 y 10");
             return;
         }
         

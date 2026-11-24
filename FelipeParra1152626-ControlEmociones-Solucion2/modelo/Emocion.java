@@ -27,6 +27,9 @@ public class Emocion
            if(intensidad > 10){
                intensidad = 10;
            }
+           if(intensidad < 1){
+               intensidad = 1;
+           }
        }
        public void restarIntensidad(int i){
            intensidad -= i; 

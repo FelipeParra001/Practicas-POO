@@ -44,6 +44,12 @@ public class GestorEmocion
     }
     
     public boolean agregarEvento(Evento e){
+        String nombre = e.getNombre();
+        for(Evento evento: eventos){
+            if(evento.getNombre().equals(nombre)){
+                return false;
+            }
+        }
         eventos.add(e);
         return true;
     }
@@ -104,14 +110,13 @@ public class GestorEmocion
     
     public String enlistarUltimos5(){
         String r = "";
-        if(recuerdos.size() > 5){
-            for(int i = recuerdos.size() - 1 ; i >= recuerdos.size() -5 ;i--){
-                r += recuerdos.get(i).enlistar();
-            }
-        }else{
-            for(Recuerdo recuerdo: recuerdos){
-                r += recuerdo.enlistar();
-            }
+        // Del mas reciente al mas antiguo, maximo 5
+        int limite = recuerdos.size() - 5;
+        if(limite < 0){
+            limite = 0;
+        }
+        for(int i = recuerdos.size() - 1 ; i >= limite ;i--){
+            r += recuerdos.get(i).enlistar();
         }
         return r;
     }

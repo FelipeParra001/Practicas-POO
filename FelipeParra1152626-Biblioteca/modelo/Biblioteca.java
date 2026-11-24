@@ -23,9 +23,27 @@ public class Biblioteca
         libros.add(libro);
     }
 
-    public void addUsuario(Usuario usuario)
+    public boolean addUsuario(Usuario usuario)
     {
+        // No se permiten dos usuarios con el mismo codigo
+        if (buscarUsuario(usuario.getCodigo()) != null)
+        {
+            return false;
+        }
         usuarios.add(usuario);
+        return true;
+    }
+
+    public Usuario buscarUsuario(String codigo)
+    {
+        for (int i = 0; i < usuarios.size(); i++)
+        {
+            if (usuarios.get(i).getCodigo().equalsIgnoreCase(codigo))
+            {
+                return usuarios.get(i);
+            }
+        }
+        return null;
     }
 
     public boolean prestar(Usuario usuario, Libro libro, Fecha fecha)

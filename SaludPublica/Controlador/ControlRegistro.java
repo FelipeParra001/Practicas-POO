@@ -105,6 +105,11 @@ public class ControlRegistro implements ActionListener {
             JOptionPane.showMessageDialog(vista, "La edad debe ser mayor que cero");
             return;
         }
+        // El estrato solo se pide al ciudadano y va de 1 a 6
+        if (vista.getTxtEstrato().isEnabled() && (estrato < 1 || estrato > 6)) {
+            JOptionPane.showMessageDialog(vista, "El estrato debe estar entre 1 y 6");
+            return;
+        }
 
         Persona persona = null;
         try {

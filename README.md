@@ -14,7 +14,7 @@ Los proyectos se abren y ejecutan con **BlueJ**: abre la carpeta del proyecto (l
 | `FelipeParra1152626-ControlEmociones` | Control de emociones, recuerdos y eventos (modelo / vista / controlador) |
 | `FelipeParra1152626-ControlEmociones-Solucion2` | Control de emociones, solución 2 (modelo / vista / controlador) |
 | `FelipeParra1152626-Pedidos` | Gestión de pedidos (modelo / vista / controlador) |
-| `FelipeParra1152626-riesgosMineria` | Gestión de riesgos en minería |
+| `FelipeParra1152626-riesgosMineria` | Gestión de riesgos en minería (modelo / vista / controlador) |
 | `FelipeParra1152626-conflictos` | Conflictos bélicos: conflictos, grupos armados y divisiones (modelo / vista / controlador) |
 | `FelipeParra1152626-ProcesoConclave` | Proceso cónclave: cardenales, votos y rondas (modelo / vista / controlador; en desarrollo) |
 | `FelipeParra1152626-KSAR` | Sistema de gestión K-SAR: guías, perros, binomios y misiones (modelo / vista / controlador; proyecto en grupo) |

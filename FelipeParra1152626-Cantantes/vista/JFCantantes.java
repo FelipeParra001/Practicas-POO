@@ -1,6 +1,5 @@
 package vista;
 
-import controlador.ControlCantantes;
 import javax.swing.*;
 import java.awt.*;
 
@@ -60,8 +59,6 @@ public class JFCantantes extends JFrame
         panelBotones.add(btnEliminar);
         panelBotones.add(btnListar);
         add(panelBotones, BorderLayout.SOUTH);
-
-        setVisible(true);
     }
 
     public JTextField getTxtNombre() { return txtNombre; }
@@ -79,11 +76,5 @@ public class JFCantantes extends JFrame
         txtNombre.setText("");
         txtAlbum.setText("");
         txtCanciones.setText("");
-    }
-
-    public static void main(String[] args)
-    {
-        JFCantantes vista = new JFCantantes();
-        new ControlCantantes(vista);
     }
 }

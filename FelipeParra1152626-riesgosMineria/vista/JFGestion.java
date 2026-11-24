@@ -5,17 +5,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JFGestion extends JFrame {
-    public JLabel lblCodigo, lblDescripcion,lblTipo, lblNivel;
-    public JTextField txtCodigo, txtDescripcion, txtTipo, txtNivel;
-    public JButton btnAgregar, btnBuscar, btnEliminar;
-    public JTextArea areaSalida;
+    private JLabel lblCodigo, lblDescripcion,lblTipo, lblNivel;
+    private JTextField txtCodigo, txtDescripcion, txtTipo, txtNivel;
+    private JButton btnAgregar, btnBuscar, btnEliminar;
+    private JTextArea areaSalida;
 
     public JFGestion() {
         setTitle("Gestor de Riesgos - Mina");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        setVisible(true);
 
         JPanel panelEntrada = new JPanel(new GridLayout(5, 2));
         
@@ -51,6 +50,39 @@ public class JFGestion extends JFrame {
         areaSalida = new JTextArea();
         areaSalida.setEditable(false);
         add(new JScrollPane(areaSalida), BorderLayout.CENTER);
+    }
+
+    // Getters
+    public JTextField getTxtCodigo() {
+        return txtCodigo;
+    }
+
+    public JTextField getTxtDescripcion() {
+        return txtDescripcion;
+    }
+
+    public JTextField getTxtTipo() {
+        return txtTipo;
+    }
+
+    public JTextField getTxtNivel() {
+        return txtNivel;
+    }
+
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public JTextArea getAreaSalida() {
+        return areaSalida;
     }
 }
 

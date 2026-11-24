@@ -1,41 +1,27 @@
 package Vista;
 
-import Controlador.ControlConclave;
-import Modelo.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
 
-public class JFGestorCardenales extends JFrame implements ActionListener
+public class JFGestorCardenales extends JFrame
 {
     // Atributos
-    private ControlConclave control;
     private JButton btnVotar;
     private JButton btnMostrarResultados;
     private JButton btnSiguienteRonda;
-    private JComboBox cmbCardenales;
+    private JComboBox<String> cmbCardenales;
     private JTextField txtNumRonda;
     private JTextArea areaResultado;
 
     // Constructor
     public JFGestorCardenales()
     {
-        control = new ControlConclave();
         setTitle("Votaciones Conclave");
         setSize(600, 520);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         crearInterfaz();
-        cargarCombo();
-        mostrar();
-        setVisible(true);
-    }
-
-    public static void main(String[] args)
-    {
-        new JFGestorCardenales();
     }
 
     // Metodos
@@ -67,14 +53,13 @@ public class JFGestorCardenales extends JFrame implements ActionListener
         lblLista.setBounds(40, 20, 160, 25);
         panelCentro.add(lblLista);
 
-        cmbCardenales = new JComboBox();
+        cmbCardenales = new JComboBox<String>();
         cmbCardenales.setBounds(210, 20, 260, 25);
         panelCentro.add(cmbCardenales);
 
         btnVotar = new JButton("Votar");
         btnVotar.setFont(new Font("Arial", Font.PLAIN, 14));
         btnVotar.setBounds(210, 70, 90, 30);
-        btnVotar.addActionListener(this);
         panelCentro.add(btnVotar);
 
         JLabel lblRonda = new JLabel("Ronda No");
@@ -105,84 +90,39 @@ public class JFGestorCardenales extends JFrame implements ActionListener
         JPanel panelSur = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 10));
         btnMostrarResultados = new JButton("Mostrar Resultados");
         btnSiguienteRonda = new JButton("Siguiente Ronda");
-        btnMostrarResultados.addActionListener(this);
-        btnSiguienteRonda.addActionListener(this);
         panelSur.add(btnMostrarResultados);
         panelSur.add(btnSiguienteRonda);
         return panelSur;
     }
 
-    private void cargarCombo()
+    // Getters
+    public JButton getBtnVotar()
     {
-        ArrayList<Cardenal> lista = control.getGestor().getCardenales();
-        for (int i = 0; i < lista.size(); i++)
-        {
-            cmbCardenales.addItem(lista.get(i));
-        }
+        return btnVotar;
     }
 
-    public void actionPerformed(ActionEvent e)
+    public JButton getBtnMostrarResultados()
     {
-        if (e.getSource() == btnVotar)
-        {
-            votar();
-        }
-        else if (e.getSource() == btnMostrarResultados)
-        {
-            mostrar();
-        }
-        else if (e.getSource() == btnSiguienteRonda)
-        {
-            siguiente();
-        }
+        return btnMostrarResultados;
     }
 
-    private void votar()
+    public JButton getBtnSiguienteRonda()
     {
-        Cardenal elegido = (Cardenal) cmbCardenales.getSelectedItem();
-        if (elegido == null)
-        {
-            return;
-        }
-        boolean ok = control.votar(elegido);
-        if (!ok)
-        {
-            JOptionPane.showMessageDialog(this, "No se puede votar");
-        }
-        mostrar();
-        if (control.rondaCerrada())
-        {
-            btnVotar.setEnabled(false);
-        }
-        if (control.getGestor().getPapa() != null)
-        {
-            btnSiguienteRonda.setEnabled(false);
-            btnVotar.setEnabled(false);
-        }
+        return btnSiguienteRonda;
     }
 
-    private void siguiente()
+    public JComboBox<String> getCmbCardenales()
     {
-        if (control.getGestor().getPapa() != null)
-        {
-            btnSiguienteRonda.setEnabled(false);
-            return;
-        }
-        boolean ok = control.siguienteRonda();
-        if (!ok)
-        {
-            JOptionPane.showMessageDialog(this, "Cierre la ronda antes de continuar");
-            return;
-        }
-        btnVotar.setEnabled(true);
-        txtNumRonda.setText("" + control.getGestor().getRondaActual().getNumero());
-        mostrar();
+        return cmbCardenales;
     }
 
-    private void mostrar()
+    public JTextField getTxtNumRonda()
     {
-        String texto = "ELECTORES\n" + control.electores() + "\n" + control.resultados();
-        areaResultado.setText(texto);
-        txtNumRonda.setText("" + control.getGestor().getRondaActual().getNumero());
+        return txtNumRonda;
+    }
+
+    public JTextArea getAreaResultado()
+    {
+        return areaResultado;
     }
 }

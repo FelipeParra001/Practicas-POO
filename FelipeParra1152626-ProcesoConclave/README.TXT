@@ -2,7 +2,7 @@
 PROJECT TITLE: Proceso Cónclave
 PURPOSE OF PROJECT: Ejercicio de POO para gestionar cardenales, votos y rondas de un cónclave (modelo / vista / controlador).
 VERSION or DATE: Noviembre 2026 (en desarrollo)
-HOW TO START THIS PROJECT: Abrir la carpeta en BlueJ y ejecutar el JFrame Vista.JFGestorCardenales.
+HOW TO START THIS PROJECT: Abrir la carpeta en BlueJ y ejecutar el main de Principal.Main.
 AUTHORS: Andres Felipe Parra Castellanos - 1152626
-USER INSTRUCTIONS: Paquete Modelo (Cardenal, TipoCardenal, Voto, Ronda, GestorCardenales), paquete Vista (JFGestorCardenales) y paquete Controlador (ControlConclave).
+USER INSTRUCTIONS: Paquete Modelo (Cardenal, TipoCardenal, Voto, Ronda, GestorCardenales), paquete Vista (JFGestorCardenales), paquete Controlador (ControlConclave) y paquete Principal (Main).
 ------------------------------------------------------------------------

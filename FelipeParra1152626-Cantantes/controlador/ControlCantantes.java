@@ -12,10 +12,10 @@ public class ControlCantantes implements ActionListener
     private JFCantantes vista;
 
     // Constructor
-    public ControlCantantes(JFCantantes vista)
+    public ControlCantantes(JFCantantes vista, GestorCantantes modelo)
     {
         this.vista = vista;
-        modelo = new GestorCantantes();
+        this.modelo = modelo;
         vista.getBtnRegistrar().addActionListener(this);
         vista.getBtnBuscar().addActionListener(this);
         vista.getBtnEliminar().addActionListener(this);
@@ -26,10 +26,22 @@ public class ControlCantantes implements ActionListener
     // Metodos
     public void actionPerformed(ActionEvent e)
     {
-        if (e.getSource() == vista.getBtnRegistrar()) registrar();
-        if (e.getSource() == vista.getBtnBuscar()) buscar();
-        if (e.getSource() == vista.getBtnEliminar()) eliminar();
-        if (e.getSource() == vista.getBtnListar()) mostrar();
+        if (e.getSource() == vista.getBtnRegistrar())
+        {
+            registrar();
+        }
+        else if (e.getSource() == vista.getBtnBuscar())
+        {
+            buscar();
+        }
+        else if (e.getSource() == vista.getBtnEliminar())
+        {
+            eliminar();
+        }
+        else if (e.getSource() == vista.getBtnListar())
+        {
+            mostrar();
+        }
     }
 
     private void registrar()

@@ -20,4 +20,5 @@ Los proyectos se abren y ejecutan con **BlueJ**: abre la carpeta del proyecto (l
 | `FelipeParra1152626-KSAR` | Sistema de gestión K-SAR: guías, perros, binomios y misiones (modelo / vista / controlador; proyecto en grupo) |
 | `FelipeParra1152626-ChavoDelOcho` | Videojuego El Chavo del Ocho: personajes, vecindad y objetos (modelo / vista / controlador) |
 | `FelipeParra1152626-EleccionesColegio` | Elecciones colegio La alegría de estudiar: personero y representantes (modelo / vista / controlador) |
+| `FelipeParra1152626-Condominio` | Condominius: condominios, unidades, residentes, visitantes, vehículos, pagos, reservas y paquetes (modelo / vista / controlador) |
 | `SaludPublica` | Ejercicio planteado de salud pública (modelo / vista / controlador) |
